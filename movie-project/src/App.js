@@ -23,17 +23,18 @@ const movies =[
 ]
 
 class App extends Component{
+
   render(){
     return(
       <div className='App'>
         <div className='Movie'>
-          {movies.map((data) =>{
-            return <Moive title={data.title} poster={data.poster} />
+          {movies.map((data, index) =>{
+            return <Moive title={data.title} poster={data.poster} key={index+1} />
             })};
         </div>
         <div className='Movie2'>
-            {movies.map(moviedata=>{
-              return <Movie2 title={moviedata.title} poster ={moviedata.poster} />
+            {movies.map((moviedata, index)=>{
+              return <Movie2 title={moviedata.title} poster ={moviedata.poster} key={index+1} />
             })};
         </div>
       </div>
@@ -41,7 +42,5 @@ class App extends Component{
   }
 
 }
-
-
 
 export default App;
