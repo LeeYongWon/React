@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Moive from './Movie';
 import Movie2 from './Movie2';
 import './App.css';
+import Movie from './Movie';
 
 class App extends Component{
   /*
@@ -27,56 +28,55 @@ class App extends Component{
  
  state ={
    greeting:'state greeting',
-   movies:[
-    {
-      title:'Matrix',
-      poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVn0G9GwGIx2o8_XCNvXjslCsn-okXRmI--J99_mLfbJslqCdW',
-      
-    },
-    {
-      title:'Full Metal jacket',
-      poster:"https://m.media-amazon.com/images/M/MV5BNzkxODk0NjEtYjc4Mi00ZDI0LTgyYjEtYzc1NDkxY2YzYTgyXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR85,0,630,1200_AL_.jpg"
-    },
-    {
-      title:"Oldboy",
-      poster:"https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Oldboykoreanposter.jpg/220px-Oldboykoreanposter.jpg"
-    },
-    {
-      title:"Star Wars",
-      poster:"https://starwarsblog.starwars.com/wp-content/uploads/2019/01/SWCO19-artists-key-art-tall-B.jpg"
-    }
-  ]
+
  }
 
- componentDidMount(){
-   console.log('ComponentDidMount')
+ componentWillMount(){
+   console.log('componentwillmount')
   setTimeout(()=>{
     this.setState({
       movies :[
-        
         {
-          title:"Trainspotting",
-          poster:"https://m.media-amazon.com/images/M/MV5BMzA5Zjc3ZTMtMmU5YS00YTMwLWI4MWUtYTU0YTVmNjVmODZhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
+          title:'Matrix',
+          poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVn0G9GwGIx2o8_XCNvXjslCsn-okXRmI--J99_mLfbJslqCdW',
+          
         },
-        ...this.state.movies
+        {
+          title:'Full Metal jacket',
+          poster:"https://m.media-amazon.com/images/M/MV5BNzkxODk0NjEtYjc4Mi00ZDI0LTgyYjEtYzc1NDkxY2YzYTgyXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR85,0,630,1200_AL_.jpg"
+        },
+        {
+          title:"Oldboy",
+          poster:"https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Oldboykoreanposter.jpg/220px-Oldboykoreanposter.jpg"
+        },
+        {
+          title:"Star Wars",
+          poster:"https://starwarsblog.starwars.com/wp-content/uploads/2019/01/SWCO19-artists-key-art-tall-B.jpg"
+        }
       ]
     })
-  },4000);
+  },3000);
  }
+
+ _renderMovies = () => {
+  const movies = this.state.movies.map((data, index) => {
+    return <Movie title={data.title} poster={data.poster} key={index+1} />
+  })
+  return movies;
+ }
+
   render(){
     console.log('did render')
     return(
       <div className='App'>
         <div className='Movie'>
-          {this.state.movies.map((data, index) =>{
-            return <Moive title={data.title} poster={data.poster} key={index+1} />
-            })};
+          {this.state.movies ? this._renderMovies() : 'loading'}
         </div>
-        <div className='Movie2'>
+        {/* <div className='Movie2'>
             {this.state.movies.map((moviedata, index)=>{
               return <Movie2 title={moviedata.title} poster ={moviedata.poster} key={index+1} />
             })};
-        </div>
+        </div> */}
       </div>
     )
   }
