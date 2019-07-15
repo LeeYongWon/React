@@ -23,8 +23,38 @@ const movies =[
 ]
 
 class App extends Component{
+  /*
+  life cycle
+  - Render : componentWillMount() -> render() -> componentDidMount()
 
+  - Update : componentWillReceiveProps(){
+    이것은 컴포넌트가 새로운 props를 받았다는 뜻이다.
+  } -> shouldCoponentUpdate(){
+    리액트는 old props, 새로운 props를 살펴본 다음
+    이전과 새로운 props가 다르면 리액트는 update==='true'라고 생각한다.
+    이전 데이터와 새로운 데이터가 서로 달면 update가 발생한다.
+  } -> componentWillUpdate(){
+    컴포넌트가 업데이트 할 거라는 단계로 넘어간다.
+  }
+  -> render(){
+
+  } -> componentDidUpdate(){
+    
+  }
+  */
+
+
+  
+
+  componentWillMount(){
+    console.log('will mount')
+  }
+
+  componentDidMount(){
+    console.log('did mount')
+  }
   render(){
+    console.log('did render')
     return(
       <div className='App'>
         <div className='Movie'>
