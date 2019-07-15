@@ -56,7 +56,7 @@ class App extends Component{
         ...this.state.movies,
         {
           title:"Trainspotting",
-          poster:"https://starwarsblog.starwars.com/wp-content/uploads/2019/01/SWCO19-artists-key-art-tall-B.jpg"
+          poster:"https://m.media-amazon.com/images/M/MV5BMzA5Zjc3ZTMtMmU5YS00YTMwLWI4MWUtYTU0YTVmNjVmODZhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
         }
       ]
     })
