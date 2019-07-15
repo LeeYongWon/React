@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Moive from './Movie';
 import Movie2 from './Movie2';
 import './App.css';
 import Movie from './Movie';
+
 
 class App extends Component{
   /*
@@ -26,10 +26,9 @@ class App extends Component{
   */
  //state를 만드는 방법
  
- state ={
-   greeting:'state greeting',
+  state={
 
- }
+  }
 
  componentWillMount(){
    console.log('componentwillmount')
@@ -55,7 +54,7 @@ class App extends Component{
         }
       ]
     })
-  },3000);
+  },0);
  }
 
  _renderMovies = () => {
@@ -65,6 +64,13 @@ class App extends Component{
   return movies;
  }
 
+ _renderMovies2 = () =>{
+    const movies =this.state.movies.map((data, index) =>{
+      return <Movie2 title={data.title} poster={data.poster} key={index+1}/>
+    })
+    return movies;
+ }
+
   render(){
     console.log('did render')
     return(
@@ -72,11 +78,9 @@ class App extends Component{
         <div className='Movie'>
           {this.state.movies ? this._renderMovies() : 'loading'}
         </div>
-        {/* <div className='Movie2'>
-            {this.state.movies.map((moviedata, index)=>{
-              return <Movie2 title={moviedata.title} poster ={moviedata.poster} key={index+1} />
-            })};
-        </div> */}
+        <div className='Movie2'>
+          {this.state.movies ? this._renderMovies2() : 'loading'}
+        </div>
       </div>
     )
   }
