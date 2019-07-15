@@ -49,7 +49,18 @@ class App extends Component{
  }
 
  componentDidMount(){
-
+   console.log('ComponentDidMount')
+  setTimeout(()=>{
+    this.setState({
+      movies :[
+        ...this.state.movies,
+        {
+          title:"Trainspotting",
+          poster:"https://starwarsblog.starwars.com/wp-content/uploads/2019/01/SWCO19-artists-key-art-tall-B.jpg"
+        }
+      ]
+    })
+  },4000);
  }
   render(){
     console.log('did render')
