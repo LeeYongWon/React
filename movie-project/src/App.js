@@ -31,42 +31,32 @@ class App extends Component{
   }
 
  componentWillMount(){
-   console.log('componentwillmount')
-  setTimeout(()=>{
-    this.setState({
-      movies :[
-        {
-          title:'Matrix',
-          poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVn0G9GwGIx2o8_XCNvXjslCsn-okXRmI--J99_mLfbJslqCdW',
-          
-        },
-        {
-          title:'Full Metal jacket',
-          poster:"https://m.media-amazon.com/images/M/MV5BNzkxODk0NjEtYjc4Mi00ZDI0LTgyYjEtYzc1NDkxY2YzYTgyXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY1200_CR85,0,630,1200_AL_.jpg"
-        },
-        {
-          title:"Oldboy",
-          poster:"https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Oldboykoreanposter.jpg/220px-Oldboykoreanposter.jpg"
-        },
-        {
-          title:"Star Wars",
-          poster:"https://starwarsblog.starwars.com/wp-content/uploads/2019/01/SWCO19-artists-key-art-tall-B.jpg"
-        }
-      ]
-    })
-  },0);
+  this._getMovies();
  }
 
+_getMovies = async() => {
+  const movies = await this._callApi()
+  this.setState({
+    movies
+  })
+}
+
+_callApi = () =>{
+  return fetch("https://yts.lt/api/v2/list_movies.json?sort_by=rating")
+  .then(response => response.json())
+  .then(json =>json.data.movies)
+  .catch(err =>err) 
+}
  _renderMovies = () => {
-  const movies = this.state.movies.map((data, index) => {
-    return <Movie title={data.title} poster={data.poster} key={index+1} />
+  const movies = this.state.movies.map(movie => {
+    return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id} />
   })
   return movies;
  }
 
  _renderMovies2 = () =>{
-    const movies =this.state.movies.map((data, index) =>{
-      return <Movie2 title={data.title} poster={data.poster} key={index+1}/>
+    const movies =this.state.movies.map((movie) =>{
+      return <Movie2 title={movie.title} poster={movie.large_cover_image} key={movie.id}/>
     })
     return movies;
  }
