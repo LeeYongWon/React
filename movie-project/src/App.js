@@ -31,11 +31,13 @@ class App extends Component{
   }
 
  componentWillMount(){
+   console.log('컴포넌트 디드 마운트에서의 ', this )
   this._getMovies();
  }
 
 _getMovies = async() => {
   const movies = await this._callApi()
+  console.log('_getMovies에서의 ', this)
   this.setState({
     movies
   })
@@ -62,10 +64,14 @@ _callApi = () =>{
  }
 
   render(){
-    console.log('did render')
+    
+    console.log('render에서의 ', this)
     return(
+      
       <div className='App'>
         <div className='Movie'>
+        {console.log('return에서의 ', this)}
+          {console.log(this.state.movies)}
           {this.state.movies ? this._renderMovies() : 'loading'}
         </div>
         <div className='Movie2'>
